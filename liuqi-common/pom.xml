@@ -15,6 +15,7 @@
     </description>
     <modules>
         <module>liuqi-common-security</module>
+        <module>liuqi-common-core</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
