@@ -24,6 +24,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+
+        <!-- LiuQi Common Security-->
+        <dependency>
+            <groupId>com.liuqi</groupId>
+            <artifactId>liuqi-common-security</artifactId>
+        </dependency>
     </dependencies>
 
 

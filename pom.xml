@@ -38,6 +38,7 @@
     <!-- 子级依赖管理-->
     <modules>
         <module>liuqi-auth</module>
+        <module>liuqi-common</module>
     </modules>
     <dependencies>
         <!-- bootstrap 启动器 -->
@@ -59,6 +60,24 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 安全模块 -->
+            <dependency>
+                <groupId>com.liuqi</groupId>
+                <artifactId>liuqi-common-security</artifactId>
+                <version>${liuqi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
