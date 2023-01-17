@@ -47,6 +47,22 @@
         </dependency>
     </dependencies>
 
+    <!-- 依赖管理-->
+    <dependencyManagement>
+        <dependencies>
+
+
+            <!-- SpringBoot 依赖配置 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
     <!--    编译打包 相关-->
     <build>
