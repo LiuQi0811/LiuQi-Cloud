@@ -40,6 +40,7 @@
         <module>liuqi-auth</module>
         <module>liuqi-common</module>
         <module>liuqi-api</module>
+        <module>liuqi-modules</module>
     </modules>
     <dependencies>
         <!-- bootstrap 启动器 -->

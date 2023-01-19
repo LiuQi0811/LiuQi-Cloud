@@ -17,6 +17,11 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
+        <!-- Apache Lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
         <!-- Alibaba Fastjson -->
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>

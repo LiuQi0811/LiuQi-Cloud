@@ -4,9 +4,12 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONWriter;
 import com.liuqi.auth.form.LoginBody;
 import com.liuqi.auth.service.SysLoginService;
+import com.liuqi.common.core.domain.R;
 import com.liuqi.common.security.service.TokenService;
+import com.liuqi.system.api.model.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
+@CrossOrigin
 public class AuthorTokenController {
     @Autowired
     private TokenService tokenService;
@@ -28,10 +32,10 @@ public class AuthorTokenController {
     private SysLoginService sysLoginService;
 
     @PostMapping(value = "/login")
-    public Object login(@RequestBody LoginBody loginBody)
+    public R<?> login(@RequestBody LoginBody loginBody)
     {
-        log.info("AuthorToken 登录参数", JSON.toJSON(loginBody));
-        sysLoginService.login(loginBody.getUsername(),loginBody.getPassword());
-        return null;
+        log.info("AuthorToken 登录参数 {}", JSON.toJSON(loginBody));
+        LoginUser loginUser = sysLoginService.login(loginBody.getUsername(), loginBody.getPassword());
+        return R.ok(loginUser);
     }
 }
