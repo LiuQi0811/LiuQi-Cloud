@@ -187,10 +187,24 @@
                 <version>${liuqi.version}</version>
             </dependency>
 
+            <!-- 接口模块 -->
+            <dependency>
+                <groupId>com.liuqi</groupId>
+                <artifactId>liuqi-common-swagger</artifactId>
+                <version>${liuqi.version}</version>
+            </dependency>
+
             <!-- 系统接口 -->
             <dependency>
                 <groupId>com.liuqi</groupId>
                 <artifactId>liuqi-api-system</artifactId>
+                <version>${liuqi.version}</version>
+            </dependency>
+
+            <!-- 日志记录 -->
+            <dependency>
+                <groupId>com.liuqi</groupId>
+                <artifactId>liuqi-common-log</artifactId>
                 <version>${liuqi.version}</version>
             </dependency>
         </dependencies>

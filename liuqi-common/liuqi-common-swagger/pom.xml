@@ -3,24 +3,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>liuqi</artifactId>
+        <artifactId>liuqi-common</artifactId>
         <groupId>com.liuqi</groupId>
         <version>3.6.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <modules>
-        <module>liuqi-system</module>
-    </modules>
 
-    <artifactId>liuqi-modules</artifactId>
+    <artifactId>liuqi-common-swagger</artifactId>
     <description>
-        liuqi-modules业务模块
+        liuqi-common-swagger系统接口
     </description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <!-- SpringBoot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.fox.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
