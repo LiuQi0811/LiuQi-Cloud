@@ -43,4 +43,5 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUser> imple
     public SysUser selectUserByUserName(String userName) {
         return userMapper.selectUserByUserName(userName);
     }
+
 }

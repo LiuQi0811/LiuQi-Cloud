@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /*
  *@ClassName SysUserController
  *@Description 用户信息接口相关
@@ -31,7 +33,10 @@ public class SysUserController
      */
     @GetMapping(value = "/info/{username}")
     public R<LoginUser> info(@PathVariable(value = "username")String username){
+        // 根据名称获取用户信息
         SysUser sysUser = userService.selectUserByUserName(username);
+        // 根据用户信息 获取 用户信息列表
+        List<SysUser> sysUsers = userService.selectUserList(sysUser);
         LoginUser loginUser = LoginUser.builder()
                 .sysUser(sysUser)
                 .build();
