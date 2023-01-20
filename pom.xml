@@ -32,6 +32,7 @@
         <minio.version>8.2.2</minio.version>
         <poi.version>4.1.2</poi.version>
         <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
     </properties>
 
 
@@ -162,16 +163,11 @@
                 <version>${transmittable-thread-local.version}</version>
             </dependency>
 
-
-
-
-
-
-
-
-
-
-
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
 
             <!-- 核心模块 -->
             <dependency>

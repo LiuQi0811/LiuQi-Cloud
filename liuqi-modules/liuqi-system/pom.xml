@@ -37,6 +37,12 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!-- Mybatis Plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
         <!-- LiuQi Common Log -->
         <dependency>
             <groupId>com.liuqi</groupId>

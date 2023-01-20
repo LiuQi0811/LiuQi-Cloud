@@ -18,4 +18,12 @@ public interface ISysUserService {
      * @return 用户信息集合信息
      */
     List<SysUser> selectUserList(SysUser user);
+
+    /**
+     * 通过用户名查询用户
+     *
+     * @param userName 用户名
+     * @return 用户对象信息
+     */
+    SysUser selectUserByUserName(String userName);
 }
