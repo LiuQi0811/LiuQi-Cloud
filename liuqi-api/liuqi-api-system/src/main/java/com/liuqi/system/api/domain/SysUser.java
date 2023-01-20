@@ -1,5 +1,11 @@
 package com.liuqi.system.api.domain;
 
+import com.liuqi.common.core.web.domain.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,8 +16,11 @@ import java.util.List;
  *@Date 2023/1/17 12:13
  *@Version 1.0
  */
-public class SysUser {
-    private static final long serialVersionUID = 1L;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class SysUser extends BaseEntity {
     /**
      * 用户ID
      */

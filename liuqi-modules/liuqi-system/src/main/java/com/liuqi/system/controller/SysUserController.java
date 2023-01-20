@@ -1,6 +1,7 @@
 package com.liuqi.system.controller;
 
 import com.liuqi.common.core.domain.R;
+import com.liuqi.system.api.domain.SysUser;
 import com.liuqi.system.api.model.LoginUser;
 import com.liuqi.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,11 @@ public class SysUserController
      */
     @GetMapping(value = "/info/{username}")
     public R<LoginUser> info(@PathVariable(value = "username")String username){
-            userService.selectUserList();
+        SysUser sysUser = userService.selectUserByUserName(username);
+        LoginUser loginUser = LoginUser.builder()
+                .sysUser(sysUser)
+                .build();
+        return R.ok(loginUser);
     }
 
 

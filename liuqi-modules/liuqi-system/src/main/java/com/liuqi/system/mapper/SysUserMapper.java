@@ -1,5 +1,6 @@
 package com.liuqi.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.liuqi.system.api.domain.SysUser;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  *@Date 2023/1/19 22:01
  *@Version 1.0
  */
-public interface SysUserMapper {
+public interface SysUserMapper extends BaseMapper<SysUser> {
 
     /**
      * 根据条件分页查询用户列表

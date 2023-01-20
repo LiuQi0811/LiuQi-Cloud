@@ -1,5 +1,6 @@
 package com.liuqi.system.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liuqi.system.api.domain.SysUser;
 import com.liuqi.system.mapper.SysUserMapper;
 import com.liuqi.system.service.ISysUserService;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class SysUserServiceImpl implements ISysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUser> implements ISysUserService {
 
     @Autowired
     private SysUserMapper userMapper;
@@ -30,5 +31,16 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public List<SysUser> selectUserList(SysUser sysUser) {
         return userMapper.selectUserList(sysUser);
+    }
+
+    /**
+     * 通过用户名查询用户
+     *
+     * @param userName 用户名
+     * @return 用户对象信息
+     */
+    @Override
+    public SysUser selectUserByUserName(String userName) {
+        return userMapper.selectUserByUserName(userName);
     }
 }

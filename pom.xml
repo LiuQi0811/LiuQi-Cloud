@@ -183,6 +183,20 @@
                 <version>${liuqi.version}</version>
             </dependency>
 
+            <!-- 权限范围 -->
+            <dependency>
+                <groupId>com.liuqi</groupId>
+                <artifactId>liuqi-common-datascope</artifactId>
+                <version>${liuqi.version}</version>
+            </dependency>
+
+            <!-- 多数据源 -->
+            <dependency>
+                <groupId>com.liuqi</groupId>
+                <artifactId>liuqi-common-datasource</artifactId>
+                <version>${liuqi.version}</version>
+            </dependency>
+
             <!-- 接口模块 -->
             <dependency>
                 <groupId>com.liuqi</groupId>
