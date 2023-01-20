@@ -3,26 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>liuqi</artifactId>
+        <artifactId>liuqi-common</artifactId>
         <groupId>com.liuqi</groupId>
         <version>3.6.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>liuqi-common</artifactId>
-    <packaging>pom</packaging>
+
+    <artifactId>liuqi-common-datascope</artifactId>
+
     <description>
-        liuqi-common通用模块
+        liuqi-common-datascope权限范围
     </description>
-    <modules>
-        <module>liuqi-common-security</module>
-        <module>liuqi-common-core</module>
-        <module>liuqi-common-swagger</module>
-        <module>liuqi-common-log</module>
-        <module>liuqi-common-datasource</module>
-        <module>liuqi-common-datascope</module>
-    </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+    <dependencies>
+
+        <!-- LiuQi Common Security -->
+        <dependency>
+            <groupId>com.liuqi</groupId>
+            <artifactId>liuqi-common-security</artifactId>
+        </dependency>
+
+    </dependencies>
+
 </project>

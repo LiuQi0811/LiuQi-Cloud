@@ -43,6 +43,18 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
+        <!-- LiuQi Common DataSource -->
+        <dependency>
+            <groupId>com.liuqi</groupId>
+            <artifactId>liuqi-common-datasource</artifactId>
+        </dependency>
+
+        <!-- LiuQi Common DataScope -->
+        <dependency>
+            <groupId>com.liuqi</groupId>
+            <artifactId>liuqi-common-datascope</artifactId>
+        </dependency>
+
         <!-- LiuQi Common Log -->
         <dependency>
             <groupId>com.liuqi</groupId>
