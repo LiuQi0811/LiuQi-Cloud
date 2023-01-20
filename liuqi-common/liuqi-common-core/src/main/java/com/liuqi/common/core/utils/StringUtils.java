@@ -9,4 +9,13 @@ package com.liuqi.common.core.utils;
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
+
+    /**
+     *  判断一个对象是否为空
+     * @param o Object
+     * @return true：为空 false：非空
+     */
+    public static boolean isNull(Object o) {
+        return o == null;
+    }
 }
