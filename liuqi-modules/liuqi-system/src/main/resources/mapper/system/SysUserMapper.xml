@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.liuqi.system.mapper.SysUserMapper">
-
+	<!-- 用户实体类属性 映射  部门，角色 多表-->
     <resultMap type="SysUser" id="SysUserResult">
         <id     property="userId"       column="user_id"      />
         <result property="deptId"       column="dept_id"      />
@@ -45,7 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="dataScope"     column="data_scope"    />
         <result property="status"       column="role_status"    />
     </resultMap>
-	
+
+	<!-- 查询全部 关联查询  用户部门id关联部门id  用户部门id关联用户角色用户id  角色id关联用户角色角色id-->
 	<sql id="selectUserVo">
         select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phone_number, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
         d.dept_id, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.status as dept_status,
@@ -55,7 +56,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    left join sys_user_role ur on u.user_id = ur.user_id
 		    left join sys_role r on r.role_id = ur.role_id
     </sql>
-    
+
+	<!--条件查询 用户表 和 部门表关联  用户表部门id关联部门表部门id-->
     <select id="selectUserList" parameterType="SysUser" resultMap="SysUserResult">
 		select u.user_id, u.dept_id, u.nick_name, u.user_name, u.email, u.avatar, u.phone_number, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, d.dept_name, d.leader from sys_user u
 		left join sys_dept d on u.dept_id = d.dept_id
