@@ -5,6 +5,7 @@ import com.liuqi.system.service.ISysPermissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /*
@@ -27,6 +28,13 @@ public class SysPermissionServiceImpl implements ISysPermissionService {
      */
     @Override
     public Set<String> getRolePermission(SysUser sysUser) {
+        // 定义角色权限列表
+        Set<String> roles = new HashSet<>();
+        if (sysUser.isAdmin()) { //判断是否是超级管理员
+            //拥有所有权限
+            // 新增超级管理员 标识
+            roles.add("admin");
+        }
         return null;
     }
 
@@ -39,6 +47,13 @@ public class SysPermissionServiceImpl implements ISysPermissionService {
      */
     @Override
     public Set<String> getMenuPermission(SysUser sysUser) {
+        // 定义菜单权限列表
+        Set<String> perms = new HashSet<>();
+        if (sysUser.isAdmin()) { //判断是否是超级管理员
+            //拥有所有权限
+            // 新增匹配规则标识
+            perms.add("*:*:*");
+        }
         return null;
     }
 }

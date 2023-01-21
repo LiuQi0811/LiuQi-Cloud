@@ -94,4 +94,13 @@ public class SysUser extends BaseEntity {
      */
     private Long roleId;
 
+
+    public boolean isAdmin() { //判断 是否是超级管理员封装
+        return isAdmin(this.userId);
+    }
+
+    public static boolean isAdmin(Long userId) { //是否是超级管理员
+        // userId 不为空 并且 等于 1L
+        return userId != null && userId == 1L;
+    }
 }
