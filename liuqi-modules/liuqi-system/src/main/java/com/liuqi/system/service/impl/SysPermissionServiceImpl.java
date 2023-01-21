@@ -2,7 +2,9 @@ package com.liuqi.system.service.impl;
 
 import com.liuqi.system.api.domain.SysUser;
 import com.liuqi.system.service.ISysPermissionService;
+import com.liuqi.system.service.ISysRoleService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -18,7 +20,8 @@ import java.util.Set;
 @Service
 @Slf4j
 public class SysPermissionServiceImpl implements ISysPermissionService {
-
+    @Autowired
+    private ISysRoleService roleService;
 
     /**
      * 获取角色数据权限
@@ -34,6 +37,8 @@ public class SysPermissionServiceImpl implements ISysPermissionService {
             //拥有所有权限
             // 新增超级管理员 标识
             roles.add("admin");
+        }else {
+
         }
         return null;
     }
