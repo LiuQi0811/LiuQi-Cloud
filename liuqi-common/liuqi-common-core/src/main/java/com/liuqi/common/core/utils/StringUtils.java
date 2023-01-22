@@ -18,4 +18,12 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     public static boolean isNull(Object o) {
         return o == null;
     }
+
+    /**
+     * * 判断一个对象是否非空
+     *
+     * @param o Object
+     * @return true：非空 false：空
+     */
+    public static boolean isNotNull(Object o){return !isNull(o);}
 }
