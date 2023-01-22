@@ -35,8 +35,7 @@
 
     <!-- 根据用户id查询角色信息   -->
     <select id="selectRolePermissionByUserId" parameterType="Long" resultMap="SysRoleResult">
-    <include refid="selectRoleVo">
+    <include refid="selectRoleVo"/>
         where r.del_flag = '0' and ur.user_id = #{userId}
-    </include>
     </select>
 </mapper>

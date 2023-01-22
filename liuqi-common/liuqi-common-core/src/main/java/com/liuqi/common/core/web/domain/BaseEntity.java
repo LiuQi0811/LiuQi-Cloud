@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 
 /*
  *@ClassName BaseEntity
@@ -43,4 +44,9 @@ public class BaseEntity implements Serializable {
      * 备注
      */
     private String remark;
+
+    /**
+     * 请求参数
+     */
+    private Map<String,Object> params;
 }
