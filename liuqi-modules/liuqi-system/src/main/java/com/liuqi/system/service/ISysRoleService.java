@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public interface ISysRoleService extends IService<SysRole> {
     /**
-     * 根据用户id查询角色
+     * 根据用户id查询角色权限
      *
      * @param userId 用户id
      * @return 角色列表

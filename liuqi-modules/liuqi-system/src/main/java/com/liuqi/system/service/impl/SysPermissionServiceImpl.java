@@ -38,9 +38,11 @@ public class SysPermissionServiceImpl implements ISysPermissionService {
             // 新增超级管理员 标识
             roles.add("admin");
         }else {
-
+            // 根据用户id 获取角色权限 集合
+            Set<String> roleKeys = roleService.selectRolePermissionByUserId(sysUser.getUserId());
+            roles.addAll(roleKeys);
         }
-        return null;
+        return roles;
     }
 
 
