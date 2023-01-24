@@ -45,11 +45,14 @@ public class SysUserController
         }
         // 获取角色集合
         Set<String> roles = permissionService.getRolePermission(sysUser);
+        // 权限集合
+        Set<String> permissions = permissionService.getMenuPermission(sysUser);
         // 根据用户信息 获取 用户信息列表
         List<SysUser> sysUsers = userService.selectUserList(sysUser);
         LoginUser loginUser = LoginUser.builder()
                 .sysUser(sysUser)
                 .roles(roles)
+                .permissions(permissions)
                 .build();
         return R.ok(loginUser);
     }

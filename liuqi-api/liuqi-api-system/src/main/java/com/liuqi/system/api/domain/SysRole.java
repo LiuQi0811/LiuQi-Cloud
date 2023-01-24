@@ -1,5 +1,6 @@
 package com.liuqi.system.api.domain;
 
+import com.liuqi.common.core.web.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SysRole {
+public class SysRole extends BaseEntity {
     private static final long serialVersionUID = 1L;
     /**
      * 角色ID
