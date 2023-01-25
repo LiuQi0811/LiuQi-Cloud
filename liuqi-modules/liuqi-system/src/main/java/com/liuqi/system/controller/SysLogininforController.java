@@ -26,7 +26,7 @@ public class SysLogininforController extends BaseController {
     /**
      * 新增系统登录日志
      */
-    @PostMapping
+    @PostMapping(value = "save")
     public AjaxResult add(@RequestBody SysLogininfor sysLogininfor) {
         return toAjax(logininforService.insertLogininfor(sysLogininfor));
     }

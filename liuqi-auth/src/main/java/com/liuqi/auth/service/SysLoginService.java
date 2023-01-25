@@ -1,6 +1,7 @@
 package com.liuqi.auth.service;
 
 import com.alibaba.fastjson2.JSON;
+import com.liuqi.common.core.constant.Constants;
 import com.liuqi.common.core.domain.R;
 import com.liuqi.common.core.enums.UserStatusEnum;
 import com.liuqi.common.core.utils.StringUtils;
@@ -24,6 +25,8 @@ import org.springframework.stereotype.Component;
 public class SysLoginService {
     @Autowired
     private RemoteUserFeignClient userFeignClient;
+    @Autowired
+    private SysRecordLogService recordLogService;
     /**
      * 用户登录
      *
@@ -35,20 +38,24 @@ public class SysLoginService {
         // 参数校验 用户名 密码
         if (StringUtils.isAnyBlank(username, password)) {  // 用户名或密码为空 错误
             log.info("用户/密码必须填写");
+            recordLogService.recordLogininfor(username, Constants.LOGIN_FAIL, "用户/密码必须填写");
             throw new RuntimeException("用户/密码必须填写");
         }
         if (username.length() < 2 || username.length() > 20) { // 用户名如果不在指定范围内 错误
             log.info("用户名不在指定范围");
+            recordLogService.recordLogininfor(username, Constants.LOGIN_FAIL, "用户名不在指定范围");
             throw new RuntimeException("用户名不在指定范围");
         }
         if (password.length() < 5 || password.length() > 20) {// 密码如果不在指定范围内 错误
             log.info("用户密码不在指定范围");
+            recordLogService.recordLogininfor(username, Constants.LOGIN_FAIL, "用户密码不在指定范围");
             throw new RuntimeException("用户密码不在指定范围");
         }
         // 查询用户信息
         R<LoginUser> userResult = userFeignClient.getUserInfo(username);
         log.info("根据用户名查询用户信息  {} ",userResult);
         if (StringUtils.isNull(userResult)||StringUtils.isNull(userResult.getData())) { //远程调用feign 为空
+            recordLogService.recordLogininfor(username, Constants.LOGIN_FAIL, "登录用户不存在");
             throw new RuntimeException("登录用户"+username+"不存在");
         }
         if (R.FAIL == userResult.getCode()) { // 请求失败状态
@@ -59,11 +66,14 @@ public class SysLoginService {
         log.info("获取data  {}", JSON.toJSON(userInfo));
         SysUser sysUser = userInfo.getSysUser();
         if (UserStatusEnum.DELETED.getCode().equals(sysUser.getDelFlag())) { // 账号删除
+            recordLogService.recordLogininfor(username, Constants.LOGIN_FAIL, "对不起，您的账号已被删除");
             throw new RuntimeException("对不起，您的账号：" + username + " 已被删除");
         }
         if(UserStatusEnum.DISABLE.getCode().equals(sysUser.getStatus())){ // 账号停用
+            recordLogService.recordLogininfor(username, Constants.LOGIN_FAIL, "用户已停用，请联系管理员");
             throw new RuntimeException("对不起，您的账号：" + username + " 已停用");
         }
+        recordLogService.recordLogininfor(username, Constants.LOGIN_SUCCESS, "登录成功");
         return userInfo;
     }
 }
