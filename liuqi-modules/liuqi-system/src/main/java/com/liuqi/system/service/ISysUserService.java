@@ -1,7 +1,9 @@
 package com.liuqi.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.liuqi.common.core.domain.R;
 import com.liuqi.system.api.domain.SysUser;
+import com.liuqi.system.api.model.LoginUser;
 
 import java.util.List;
 
@@ -27,4 +29,13 @@ public interface ISysUserService extends IService<SysUser> {
      * @return 用户对象信息
      */
     SysUser selectUserByUserName(String userName);
+
+    /**
+     * 获取当前用户信息
+     * @param username 用户名
+     * @return
+     */
+    R<LoginUser> info(String username);
+
 }
+
