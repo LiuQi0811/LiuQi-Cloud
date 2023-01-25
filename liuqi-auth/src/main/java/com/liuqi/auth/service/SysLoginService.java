@@ -1,8 +1,11 @@
 package com.liuqi.auth.service;
 
+import com.liuqi.common.core.domain.R;
+import com.liuqi.system.api.client.RemoteUserFeignClient;
 import com.liuqi.system.api.model.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /*
@@ -12,10 +15,12 @@ import org.springframework.stereotype.Component;
  *@Date 2023/1/17 10:36
  *@Version 1.0
  */
-@Slf4j
-@Component
-public class SysLoginService {
 
+@Component
+@Slf4j
+public class SysLoginService {
+    @Autowired
+    private RemoteUserFeignClient userFeignClient;
     /**
      * 用户登录
      *
@@ -38,6 +43,8 @@ public class SysLoginService {
             throw new RuntimeException("用户密码不在指定范围");
         }
         // 查询用户信息
+        R<LoginUser> userInfo = userFeignClient.getUserInfo(username);
+        log.info("查询用户信息  {} ",userInfo);
 
         return null;
     }
