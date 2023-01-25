@@ -1,10 +1,7 @@
 package com.liuqi.system.controller;
 
 import com.liuqi.common.core.domain.R;
-import com.liuqi.common.core.utils.StringUtils;
-import com.liuqi.system.api.domain.SysUser;
 import com.liuqi.system.api.model.LoginUser;
-import com.liuqi.system.service.ISysPermissionService;
 import com.liuqi.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Set;
 
 /*
  *@ClassName SysUserController
