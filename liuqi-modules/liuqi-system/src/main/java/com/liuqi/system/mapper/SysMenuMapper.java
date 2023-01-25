@@ -1,5 +1,8 @@
 package com.liuqi.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.liuqi.system.api.domain.SysMenu;
+
 import java.util.List;
 
 /*
@@ -9,7 +12,7 @@ import java.util.List;
  *@Date 2023/1/23 08:32
  *@Version 1.0
  */
-public interface SysMenuMapper {
+public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
 
     /**

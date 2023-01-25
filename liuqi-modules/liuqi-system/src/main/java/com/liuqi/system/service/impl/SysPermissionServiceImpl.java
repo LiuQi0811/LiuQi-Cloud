@@ -70,9 +70,16 @@ public class SysPermissionServiceImpl implements ISysPermissionService {
             //获取角色列表
             List<SysRole> roles = sysUser.getRoles();
             if (!roles.isEmpty() && roles.size() > 1) { //判断角色列表是否为空 长度
-                for (SysRole role : roles) { //循环遍历角色集合
 
+                // 多角色设置permissions属性，以便数据权限匹配权限
+                for (SysRole role : roles) { //循环遍历角色集合
+                    // 根据角色id查询菜单权限
+                    Set<String> rolePerms = menuService.selectMenuPermsByRoleId(role.getRoleId());
+                    role.setPermissions(rolePerms);
+                    perms.addAll(rolePerms);
                 }
+            }else { //角色列表不为空 直接返回结果
+                perms.addAll(menuService.selectMenuPermsByUserId(sysUser.getUserId()));
             }
         }
         return perms;
