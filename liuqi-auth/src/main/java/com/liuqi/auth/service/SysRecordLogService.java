@@ -1,10 +1,13 @@
 package com.liuqi.auth.service;
 
 import com.liuqi.common.core.constant.Constants;
+import com.liuqi.common.core.utils.ServletUtils;
 import com.liuqi.common.core.utils.StringUtils;
+import com.liuqi.common.core.utils.ip.IpUtils;
 import com.liuqi.system.api.client.RemoteLogFeignClient;
 import com.liuqi.system.api.domain.SysLogininfor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /*
  *@ClassName SysRecordLogService
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *@Date 2023/1/25 12:15
  *@Version 1.0
  */
+@Component
 public class SysRecordLogService {
     @Autowired
     private RemoteLogFeignClient remoteLogFeignClient;
@@ -28,6 +32,7 @@ public class SysRecordLogService {
     public void recordLogininfor(String username, String status, String message) {
         SysLogininfor sysLogininfor = SysLogininfor.builder()
                 .userName(username)
+                .ipaddr(IpUtils.getIpAddr(ServletUtils.getRequest())) //ip
                 .status(status)
                 .msg(message)
                 .build();
