@@ -42,6 +42,7 @@
         <module>liuqi-common</module>
         <module>liuqi-api</module>
         <module>liuqi-modules</module>
+        <module>liuqi-gateway</module>
     </modules>
     <dependencies>
         <!-- bootstrap 启动器 -->
