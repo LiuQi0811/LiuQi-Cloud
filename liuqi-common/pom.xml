@@ -20,6 +20,7 @@
         <module>liuqi-common-log</module>
         <module>liuqi-common-datasource</module>
         <module>liuqi-common-datascope</module>
+        <module>liuqi-common-redis</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

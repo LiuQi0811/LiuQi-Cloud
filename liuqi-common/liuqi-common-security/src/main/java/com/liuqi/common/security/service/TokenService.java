@@ -6,13 +6,16 @@ import com.liuqi.common.core.utils.ServletUtils;
 import com.liuqi.common.core.utils.ip.IpUtils;
 import com.liuqi.common.core.utils.jwt.JwtUtils;
 import com.liuqi.common.core.utils.uuid.IdUtils;
+import com.liuqi.common.redis.service.RedisService;
 import com.liuqi.system.api.model.LoginUser;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /*
  *@ClassName TokenService
@@ -25,6 +28,8 @@ import java.util.Map;
 @Slf4j
 public class TokenService {
 
+    @Autowired
+    private RedisService redisService;
     protected static final long MILLIS_SECOND = 1000;
     protected static final long MILLIS_MINUTE = 60 * MILLIS_SECOND;
     // 缓存有效期，默认720（分钟）
@@ -76,7 +81,9 @@ public class TokenService {
         // 根据uuid将loginUser缓存
         final String key = this.getTokenKey(loginUser.getToken());
         log.info("获取token key： {}",key);
-        // 存入redis 缓存
+        // 存入redis 缓存 有效期720分钟
+        redisService.setCacheObject(key,loginUser,expireTime, TimeUnit.MINUTES);
+        log.info("刷新令牌有效期.......");
     }
 
     /**

@@ -8,25 +8,28 @@
         <version>3.6.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>liuqi-common-security</artifactId>
+
+    <artifactId>liuqi-common-redis</artifactId>
     <description>
-        liuqi-common-security安全模块
+        liuqi-common-redis缓存服务
     </description>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
     <dependencies>
-        <!-- LiuQi Api System -->
+        <!-- SpringBoot Boot Redis -->
         <dependency>
-            <groupId>com.liuqi</groupId>
-            <artifactId>liuqi-api-system</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <!-- LiuQi Common Redis-->
+        <!-- LiuQi Common Core-->
         <dependency>
             <groupId>com.liuqi</groupId>
-            <artifactId>liuqi-common-redis</artifactId>
+            <artifactId>liuqi-common-core</artifactId>
         </dependency>
     </dependencies>
+
 </project>

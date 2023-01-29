@@ -211,6 +211,13 @@
                 <version>${liuqi.version}</version>
             </dependency>
 
+            <!-- LiuQi Common Redis-->
+            <dependency>
+                <groupId>com.liuqi</groupId>
+                <artifactId>liuqi-common-redis</artifactId>
+                <version>${liuqi.version}</version>
+            </dependency>
+
             <!-- 日志记录 -->
             <dependency>
                 <groupId>com.liuqi</groupId>
