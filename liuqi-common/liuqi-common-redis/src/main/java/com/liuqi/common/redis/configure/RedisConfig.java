@@ -24,6 +24,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 
     @Bean
+    @SuppressWarnings(value = {"unchecked", "rawtypes"}) //批注允许您选择性地取消特定代码段（即，类或方法）中的警告
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         final RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory);

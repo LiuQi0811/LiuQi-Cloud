@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  *@Version 1.0
  */
 @Component
+@SuppressWarnings(value = { "unchecked", "rawtypes" })//批注允许您选择性地取消特定代码段（即，类或方法）中的警告
 public class RedisService {
     @Autowired
     private RedisTemplate redisTemplate;
