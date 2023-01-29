@@ -25,7 +25,6 @@ import java.util.Map;
  */
 @RestController
 @Slf4j
-@CrossOrigin
 public class AuthorTokenController {
     @Autowired
     private TokenService tokenService;

@@ -30,6 +30,7 @@ public class IpUtils {
         String ip = null;
         String header = request.getHeader("x-forwarded-for");
         log.info("获取header {}", header);
+        ip = header;
         if (header == null || header.length() == 0 || "unknown".equalsIgnoreCase(header)) { // 获取header为空
             ip = request.getHeader("Proxy-Client-IP");
         }

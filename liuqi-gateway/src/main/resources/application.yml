@@ -5,4 +5,39 @@ spring:
   # 服务名称
   application:
     name: liuqi-gateway
+  profiles:
+    # 环境配置
+    active: dev
+  # Redis配置
+  redis:
+    port: 6379
+    database: 12
+    host: 127.0.0.1
+
+
+  cloud:
+    # nacos 配置相关
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        # 配置中心地址
+        server-addr: 127.0.0.1:8848
+    # 网关配置相关
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      # 路由配置
+      routes:
+        # 接口测试
+        - id: liuqi-auth
+          uri: lb://liuqi-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
 
