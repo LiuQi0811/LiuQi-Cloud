@@ -1,1 +1,3 @@
 com.liuqi.common.redis.service.RedisService
+com.liuqi.common.redis.configure.RedisConfig
+
