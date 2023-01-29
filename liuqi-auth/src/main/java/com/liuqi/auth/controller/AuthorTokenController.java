@@ -35,7 +35,9 @@ public class AuthorTokenController {
     public R<?> login(@RequestBody LoginBody loginBody)
     {
         log.info("AuthorToken 登录参数 {}", JSON.toJSON(loginBody));
+        // 登录用户信息
         LoginUser loginUser = sysLoginService.login(loginBody.getUsername(), loginBody.getPassword());
+        //TODO 获取登录token
         return R.ok(loginUser);
     }
 }
