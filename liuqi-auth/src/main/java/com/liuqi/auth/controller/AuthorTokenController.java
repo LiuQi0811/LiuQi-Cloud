@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /*
  *@ClassName AuthorTokenController
  *@Description token 控制
@@ -32,12 +34,12 @@ public class AuthorTokenController {
     private SysLoginService sysLoginService;
 
     @PostMapping(value = "/login")
-    public R<?> login(@RequestBody LoginBody loginBody)
-    {
+    public R<?> login(@RequestBody LoginBody loginBody) {
         log.info("AuthorToken 登录参数 {}", JSON.toJSON(loginBody));
         // 登录用户信息
         LoginUser loginUser = sysLoginService.login(loginBody.getUsername(), loginBody.getPassword());
-        //TODO 获取登录token
-        return R.ok(loginUser);
+        //获取登录token
+        final Map<String, Object> token = tokenService.createToken(loginUser);
+        return R.ok(token);
     }
 }
