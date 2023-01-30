@@ -20,4 +20,14 @@ public class IdUtils {
     public static String fastUUID() {
         return UUID.fastUUID().toString();
     }
+
+    /**
+     * 简化的UUID，去掉了横线
+     *
+     * @return 简化的UUID，去掉了横线
+     */
+    public static String simpleUUID()
+    {
+        return UUID.randomUUID().toString(true);
+    }
 }
