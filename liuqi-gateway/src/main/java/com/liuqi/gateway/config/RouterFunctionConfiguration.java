@@ -1,6 +1,8 @@
 package com.liuqi.gateway.config;
 
+import com.liuqi.gateway.handler.ValidateCodeHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -20,6 +22,9 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Slf4j
 public class RouterFunctionConfiguration {
 
+    @Autowired
+    private ValidateCodeHandler validateCodeHandler;
+
     /**
      * Spring5 MVC RouterFunction
      * @return
@@ -30,7 +35,7 @@ public class RouterFunctionConfiguration {
         final RouterFunction<ServerResponse> route = RouterFunctions.route(RequestPredicates
                 .GET("/code")
                 .and(
-                        RequestPredicates.accept(MediaType.TEXT_PLAIN)), null);
+                        RequestPredicates.accept(MediaType.TEXT_PLAIN)), validateCodeHandler);
         log.info("网关路由信息：  {}",route);
         return route;
     }

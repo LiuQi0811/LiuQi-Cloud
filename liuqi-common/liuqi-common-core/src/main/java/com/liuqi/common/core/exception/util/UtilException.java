@@ -1,4 +1,4 @@
-package com.liuqi.common.core.exception;
+package com.liuqi.common.core.exception.util;
 
 /*
  *@ClassName UtilException

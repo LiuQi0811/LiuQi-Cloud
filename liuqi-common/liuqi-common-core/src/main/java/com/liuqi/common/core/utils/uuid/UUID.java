@@ -1,10 +1,9 @@
 package com.liuqi.common.core.utils.uuid;
 
-import com.liuqi.common.core.exception.UtilException;
+import com.liuqi.common.core.exception.util.UtilException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
