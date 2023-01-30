@@ -2,7 +2,10 @@ package com.liuqi.gateway.service.impl;
 
 import com.liuqi.common.core.exception.captcha.CaptchaException;
 import com.liuqi.common.core.web.domain.AjaxResult;
+import com.liuqi.gateway.config.properties.CaptchaProperties;
 import com.liuqi.gateway.service.ValidateCodeService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -15,7 +18,11 @@ import java.io.IOException;
  *@Version 1.0
  */
 @Component
+@Slf4j
 public class ValidateCodeServiceImpl implements ValidateCodeService {
+
+    @Autowired
+    private CaptchaProperties captchaProperties;
 
     /**
      * 生成验证码
@@ -25,6 +32,8 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
      */
     @Override
     public AjaxResult createCaptcha() throws IOException, CaptchaException {
-        return new AjaxResult();
+        final AjaxResult ajax = AjaxResult.success();
+        log.info("CaptchaProperties 配置信息 {}",captchaProperties);
+        return ajax;
     }
 }

@@ -40,4 +40,11 @@ spring:
           filters:
             - StripPrefix=1
 
+# 安全配置
+security:
+  # 验证码配置
+  captcha:
+    enabled: true
+    type: math
+
 
