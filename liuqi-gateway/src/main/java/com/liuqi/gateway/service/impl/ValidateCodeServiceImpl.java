@@ -3,6 +3,7 @@ package com.liuqi.gateway.service.impl;
 import com.google.code.kaptcha.Producer;
 import com.liuqi.common.core.constant.CacheConstants;
 import com.liuqi.common.core.exception.captcha.CaptchaException;
+import com.liuqi.common.core.utils.sign.Base64;
 import com.liuqi.common.core.utils.uuid.IdUtils;
 import com.liuqi.common.core.web.domain.AjaxResult;
 import com.liuqi.gateway.config.properties.CaptchaProperties;
@@ -10,8 +11,11 @@ import com.liuqi.gateway.service.ValidateCodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FastByteArrayOutputStream;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /*
@@ -50,20 +54,35 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         }
         // 保存验证码信息
         final String uuid = IdUtils.simpleUUID();
-        log.info("验证码 UUID:  {}",uuid);
+        log.info("验证码 UUID:  {}", uuid);
         final String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + uuid;
-        log.info("验证码 redis key: {}",verifyKey);
+        log.info("验证码 redis key: {}", verifyKey);
 
+        // 验证码文本 验证码
         String captchaStr = null, captchaCode = null;
-
+        // 缓冲区图像
+        BufferedImage captchaImage = null;
         // 验证码类型（math 数组计算 char 字符）
         final String captchaType = captchaProperties.getType();
-        if(captchaType.equals("math")){ //数组计算 验证码类型
+        if (captchaType.equals("math")) { //数组计算 验证码类型
             // 验证码文本
             final String captchaText = captchaProducerMath.createText();
-            log.info("验证码文本: {}",captchaText);
+            log.info("验证码文本: {}", captchaText);
+//            captchaStr = captchaText.substring(0,captchaText.lastIndexOf("@"));
+//            log.info("captchaStr:::  {}",captchaStr);
+            captchaImage = captchaProducerMath.createImage(captchaText);
+            //
         }
-        ajax.put("uuid",uuid);
+        // 转换流信息写出
+        FastByteArrayOutputStream os = new FastByteArrayOutputStream();
+        try {
+            ImageIO.write(captchaImage, "jpg", os);
+        } catch (IOException e) {
+            return AjaxResult.error(e.getMessage());
+        }
+        final String captchaImagBase64 = Base64.encode(os.toByteArray());
+        ajax.put("uuid", uuid);
+        ajax.put("captchaImage", captchaImagBase64);
         return ajax;
     }
 }

@@ -33,6 +33,7 @@ public class CaptchaConfig {
         final Properties properties = new Properties();
         // 是否有边框 默认为true 我们可以自己设置yes，no
         properties.setProperty(KAPTCHA_BORDER,"yes");
+
         // 创建验证码配置对象
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
