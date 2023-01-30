@@ -46,5 +46,10 @@ security:
   captcha:
     enabled: true
     type: math
+  # 不校验白名单
+  ignore:
+    whites:
+      - /auth/login
+
 
 
