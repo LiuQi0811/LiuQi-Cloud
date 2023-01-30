@@ -32,6 +32,9 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
     @Autowired
     private CaptchaProperties captchaProperties;
 
+    @Resource(name = "captchaProducer")
+    private Producer captchaProducer;
+
     @Resource(name = "captchaProducerMath")
     private Producer captchaProducerMath;
 
@@ -67,11 +70,22 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         if (captchaType.equals("math")) { //数组计算 验证码类型
             // 验证码文本
             final String captchaText = captchaProducerMath.createText();
-            log.info("验证码文本: {}", captchaText);
-//            captchaStr = captchaText.substring(0,captchaText.lastIndexOf("@"));
-//            log.info("captchaStr:::  {}",captchaStr);
-            captchaImage = captchaProducerMath.createImage(captchaText);
-            //
+            log.info("验证码文本(Math): {}", captchaText);
+            captchaStr = captchaText.substring(0,captchaText.lastIndexOf("@"));
+            log.info("captchaStr:::  {}",captchaStr);
+            captchaCode = captchaText.substring(captchaText.lastIndexOf("@") + 1);
+            log.info("captchaCode:::  {}",captchaCode);
+
+            // 验证码图片
+            captchaImage = captchaProducerMath.createImage(captchaStr);
+
+        }
+        else if ("char".equals(captchaType))
+        {
+            captchaStr = captchaCode = captchaProducer.createText();
+            log.info("验证码文本(Char): {}", captchaStr);
+            // 验证码图片
+            captchaImage = captchaProducer.createImage(captchaStr);
         }
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
