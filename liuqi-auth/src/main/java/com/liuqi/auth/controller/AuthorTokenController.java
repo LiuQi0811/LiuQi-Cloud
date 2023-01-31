@@ -9,11 +9,9 @@ import com.liuqi.common.security.service.TokenService;
 import com.liuqi.system.api.model.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /*
@@ -32,6 +30,11 @@ public class AuthorTokenController {
     @Autowired
     private SysLoginService sysLoginService;
 
+    /**
+     * 用户登录
+     * @param loginBody
+     * @return
+     */
     @PostMapping(value = "/login")
     public R<?> login(@RequestBody LoginBody loginBody) {
         log.info("AuthorToken 登录参数 {}", JSON.toJSON(loginBody));
@@ -40,5 +43,16 @@ public class AuthorTokenController {
         //获取登录token
         final Map<String, Object> token = tokenService.createToken(loginUser);
         return R.ok(token);
+    }
+
+    /**
+     * 用户退出
+     * @param request
+     * @return
+     */
+    @DeleteMapping(value = "/logout")
+    public R<?> logout(HttpServletRequest request){
+        log.info("用户退出 请求信息： {}",request);
+        return R.ok();
     }
 }

@@ -2,10 +2,12 @@ package com.liuqi.gateway.service.impl;
 
 import com.google.code.kaptcha.Producer;
 import com.liuqi.common.core.constant.CacheConstants;
+import com.liuqi.common.core.constant.Constants;
 import com.liuqi.common.core.exception.captcha.CaptchaException;
 import com.liuqi.common.core.utils.sign.Base64;
 import com.liuqi.common.core.utils.uuid.IdUtils;
 import com.liuqi.common.core.web.domain.AjaxResult;
+import com.liuqi.common.redis.service.RedisService;
 import com.liuqi.gateway.config.properties.CaptchaProperties;
 import com.liuqi.gateway.service.ValidateCodeService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,7 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /*
  *@ClassName ValidateCodeServiceImpl
@@ -31,6 +34,9 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
 
     @Autowired
     private CaptchaProperties captchaProperties;
+
+    @Autowired
+    private RedisService redisService;
 
     @Resource(name = "captchaProducer")
     private Producer captchaProducer;
@@ -87,6 +93,8 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
             // 验证码图片
             captchaImage = captchaProducer.createImage(captchaStr);
         }
+        // redis 缓存 验证码
+        redisService.setCacheObject(verifyKey,captchaCode, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try {

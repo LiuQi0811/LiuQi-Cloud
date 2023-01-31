@@ -48,4 +48,9 @@ public class Constants {
      */
     public static final String LOGIN_FAIL_STATUS = "1";
 
+    /**
+     * 验证码有效期（分钟）
+     */
+    public static final long CAPTCHA_EXPIRATION = 2;
+
 }
